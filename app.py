@@ -23,7 +23,7 @@ def create_recruit(token, collection_url, name, upw_link, title, description, co
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-    row.member_since = since
+    row.member_since = NotionDate(since, timezone=timezone).to_notion()
     row.skills = skills
     
 
