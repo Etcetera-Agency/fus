@@ -4,7 +4,7 @@ from notion.collection import NotionDate
 from flask import Flask
 from flask import request
 import pytz
-import datetime
+from datetime import datetime
 
 timezone = "Europe/Kiev"
 
@@ -24,7 +24,8 @@ def create_recruit(token, collection_url, name, upw_link, title, description, co
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-    row.member_since = NotionDate(since, timezone=timezone).to_notion()
+    date = datetime.strptime(since, '%d-%b-%Y')
+    row.member_since = NotionDate(date, timezone=timezone).to_notion()
     row.skills = skills
     
 
