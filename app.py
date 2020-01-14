@@ -24,8 +24,9 @@ def create_recruit(token, collection_url, name, upw_link, title, description, co
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-    date = datetime.strptime(since, '%d-%b-%Y').strftime('%Y-%m-%d')
-    row.member_since = NotionDate(date, None, timezone=timezone).to_notion()
+#    date = datetime.strptime(since, '%d-%b-%Y').strftime('%Y-%m-%d')
+#    row.member_since = NotionDate(date, None, timezone=timezone).to_notion()
+    row.member_since = since
     row.skills = skills
     
 
