@@ -18,72 +18,15 @@ def create_recruit(token, collection_url, name, upw_link, title, description, co
     cv = client.get_collection_view(collection_url)
     row = cv.collection.add_row()
     row.name = name
-    row.upwork = upw_link
+    row.upwork_profile = upw_link
     row.description = description
     row.title = title
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-#    date = datetime.strptime(since, '%d-%b-%Y').strftime('%Y-%m-%d')
-#    row.member_since = NotionDate(date, None, timezone=timezone).to_notion()
-    row.member_since = since
+    row.set_property('Member since', datetime.datetime.strptime(since, "%d-%b-%Y")) 
     row.skills = skills
     
-def create_answer(token, collection_url, name, upw_link, title, description, country, rate, pf_items, skills, since):
-    # notion
-    client = NotionClient(token)
-    if form = "manager":
-		collection_url = ""
-	elif form = "developer":
-		collection_url = ""
-	elif form = "designer":
-		collection_url = ""
-	else:
-		return f"Can't find Function for role {role}"	
-    cv = client.get_collection_view(collection_url)
-    row = cv.collection.add_row()
-    row.name = name
-    row.upwork = upw_link
-    row.description = description
-    row.title = title
-    row.country = country
-    row.rate = rate
-    row.portfolio_items = pf_items
-    row.skills = skills    
-    row.set_property('Member since', datetime.datetime.strptime(since, "%d-%b-%Y"))
-
-@app.route('/answer', methods=['POST'])
-def answer():	
-    form = request.form.get("form")
-    token_v2 = os.environ.get("TOKEN")
-    a = request.form.get('a')
-    upw_link = request.form.get('upw_link')
-    title = request.form.get('title')
-    country = request.form.get('country')
-    rate = request.form.get('rate', type = int)
-    pf_items = request.form.get('pf_items', type = int)
-    skills = request.form.get('skills')
-    since = request.form.get('since')
-    description = request.form.get('description')
-    create_answer(token_v2, form, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, w, x, y, z)
-    return f'added {a} answer to Notion'
-
-    
-@app.route('/recruit', methods=['POST'])
-def recruit():
-    collection_url = request.form.get("collectionURL")
-    name = request.form.get('name')
-    token_v2 = os.environ.get("TOKEN")
-    upw_link = request.form.get('upw_link')
-    title = request.form.get('title')
-    country = request.form.get('country')
-    rate = request.form.get('rate', type = int)
-    pf_items = request.form.get('pf_items', type = int)
-    skills = request.form.get('skills')
-    since = request.form.get('since')
-    description = request.form.get('description')
-    create_recruit(token_v2, collection_url, name, upw_link, title, description, country, rate, pf_items, skills, since)
-    return f'added {name} recruit to Notion'
 
 
 @app.route('/recruit', methods=['POST'])
