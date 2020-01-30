@@ -49,10 +49,8 @@ def create_answer(token, collection_url, name, upw_link, title, description, cou
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-#    date = datetime.strptime(since, '%d-%b-%Y').strftime('%Y-%m-%d')
-#    row.member_since = NotionDate(date, None, timezone=timezone).to_notion()
-    row.member_since = since
     row.skills = skills    
+    row.set_property('Member since', datetime.datetime.strptime(since, "%d-%b-%Y"))
 
 @app.route('/answer', methods=['POST'])
 def answer():	
