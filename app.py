@@ -24,8 +24,9 @@ def create_recruit(token, collection_url, name, upw_link, title, description, co
     row.country = country
     row.rate = rate
     row.portfolio_items = pf_items
-    row.set_property('Member since', datetime.strptime(since, "%d-%b-%Y")) 
     row.skills = skills
+    row.set_property('Member since', datetime.strptime(since, "%d-%b-%Y")) 
+    
     
 
 
